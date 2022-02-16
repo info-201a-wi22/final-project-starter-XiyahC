@@ -3,7 +3,7 @@
 
 *P01: Project Proposal*: [US Air Pollution in Recent Years Proposal](./docs/p01-proposal.md)
 
-Kris
+Kris, Xiyah
 
 |Project Directories | Brief Description|
 |---------------| -----------------|
