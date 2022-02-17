@@ -8,7 +8,7 @@ as follows:
 |Report | Brief Description|
 |---------------| -----------------|
 |[Project Proposal (FIX ME!)](./p01-proposal.md) | A brief description of your P1:Project Proposal
-|[Exploratory Data Analysis](./index.html) | A brief description of your exploratory data analyis report
+|[Exploratory Data Analysis](https://info-201a-wi22.github.io/final-project-starter-XiyahC/) | A brief description of your exploratory data analyis report
 |[Interactive Vizualizaiton](./xxx) | A brief description of your final report.
 
 
