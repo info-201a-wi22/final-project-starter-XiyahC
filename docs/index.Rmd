@@ -17,16 +17,15 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## ACCESSING THE /source DIRECTORY
 ### Source Data and Load to View
-```{r}
+```{r, echo=TRUE}
 # Sourced the code to data_access.R file 
 # load the dataset with load_data()
-
 source("../source/data_access.R")
 df <- load_data()
 ```
 
 ### Dataset Information and Summary
-```{r df}
+```{r, echo=TRUE}
 summary_info <- list()
 summary_info$col_names <- unique(colnames(df))
 summary_info$vars_size <- ncol(df)
@@ -37,10 +36,11 @@ summary_info$NO2_unit  <- unique(df$NO2.Units)
 summary_info$O3_unit   <- unique(df$O3.Units)
 summary_info$SO2_unit  <- unique(df$SO2.Units)
 summary_info$CO_unit   <- unique(df$CO.Units)
-summary_info
 ```
 
-> `r msg` Hope you have a good day!! 
+> This dataset has **`r summary_info$vars_size`** variables and **`r summary_info$obsv_size`** observations, collected data from **`r summary_info$min_year`** to **`r summary_info$max_year`**.  
+> There are four pollutants recorded, they are NO2(**`r summary_info$NO2_unit`**), O3 (**`r summary_info$O3_unit`**), SO2 (**`r summary_info$SO2_unit`**), and CO (**`r summary_info$CO_unit`**).  
+> **Column Names:** `r summary_info$col_names` 
 
 ## ABOUT THIS FILE: 
 
