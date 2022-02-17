@@ -1,7 +1,7 @@
 ---
-title: "Your Project Title"
-author: "project team members"
-date: "1/22/2022"
+title: "US Air Pollution in Recent Years"
+author: "Kris Shen, Iris Mao, Rui Han Liu, Xiyah Chang"
+date: "02/16/2022"
 output: html_document
 ---
 
@@ -16,19 +16,28 @@ knitr::opts_chunk$set(echo = TRUE)
 * Please see Canvas for more details.
 
 ## ACCESSING THE /source DIRECTORY
-### Example 1: Source some code and run a function
+### Source Data and Load to View
 ```{r}
-# Example 1: Note relative path, which can be read: Up one
-# directory(..), down into source (/source), and 
-# then "source" an R file (data_access.R)
+# Sourced the code to data_access.R file 
+# load the dataset with load_data()
+
 source("../source/data_access.R")
-data_access_test()
+df <- load_data()
 ```
 
-### Example 2: Initialize a variable and then use it
-```{r}
-# Example 1: This function was "sourced" above
-msg <- data_access_test(" Morgan!")
+### Dataset Information and Summary
+```{r df}
+summary_info <- list()
+summary_info$col_names <- unique(colnames(df))
+summary_info$vars_size <- ncol(df)
+summary_info$obsv_size <- nrow(df)
+summary_info$max_year  <- max(df$Date.Local, na.rm=TRUE)
+summary_info$min_year  <- min(df$Date.Local, na.rm=TRUE)
+summary_info$NO2_unit  <- unique(df$NO2.Units)
+summary_info$O3_unit   <- unique(df$O3.Units)
+summary_info$SO2_unit  <- unique(df$SO2.Units)
+summary_info$CO_unit   <- unique(df$CO.Units)
+summary_info
 ```
 
 > `r msg` Hope you have a good day!! 
