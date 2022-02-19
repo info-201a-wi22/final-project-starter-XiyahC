@@ -9,10 +9,10 @@
 #  -draw the chart about `counties` data frame to find the county of hightest AQI.
 #
 #----------------------------------------------------------------------------#
-setwd("~/final-project/final-project-starter-XiyahC/data")
+#setwd("C:/Users/mobtn/Documents/_code/final-project-starter-XiyahC/data")
 
 # # Install and load necessary packages
-install.packages("ggplot2")
+#install.packages("ggplot2")
 library(ggplot2)
 
 # Using the `ggplot()` function from the `ggplot2` package, work in `counties`data frame,
@@ -28,7 +28,7 @@ second_chart<-ggplot(Ohio_situation,aes(x = year, y = ave_so2_aqi, color = Count
     x = "Year",
     y = "Average SO2 AQI",
     title = "Average SO2 AQI in Ohio(2010-2016)")
-plot(second_chart)
+#plot(second_chart)
 
 ##Purpose and Reason
 #In the second chart, I used a scatter plot. By analyzing the first chart, we can 

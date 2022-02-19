@@ -1,9 +1,9 @@
 # Load Packages
-library("dplyr")
+library("dplyr", warn.conflicts = FALSE)
 library("tidyverse")
 
 # Load Data
-setwd("C:/Users/cjld0/OneDrive - UW/2022 WIN/INFO 201 A/final_proj/final-project-starter-XiyahC/data")
+setwd("C:/Users/mobtn/Documents/_code/final-project-starter-XiyahC/data")
 data <- "uspollution_pollution_us_2010_2016.csv"
 uspollution <- read.csv(data, header=TRUE, stringsAsFactors=FALSE)
 View(uspollution)

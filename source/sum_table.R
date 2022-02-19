@@ -16,11 +16,11 @@
 #----------------------------------------------------------------------------#
 
 # Load Packages
-library("dplyr")
+library("dplyr", warn.conflicts = FALSE)
 library("tidyverse")
 
 # Load Data
-setwd("C:/Users/cjld0/OneDrive - UW/2022 WIN/INFO 201 A/final_proj/final-project-starter-XiyahC/data")
+setwd("C:/Users/mobtn/Documents/_code/final-project-starter-XiyahC/data")
 data <- "uspollution_pollution_us_2010_2016.csv"
 uspollution <- read.csv(data, header=TRUE, stringsAsFactors=FALSE)
 View(uspollution)
@@ -37,23 +37,23 @@ states_ave <- uspollution %>%
   summarise(ave_no2_mean=mean(NO2.Mean,na.rm=TRUE), ave_no2_max_val=mean(NO2.1st.Max.Value,na.rm=TRUE), ave_no2_aqi=mean(NO2.AQI,na.rm=TRUE),
             ave_o3_mean=mean(O3.Mean,na.rm=TRUE), ave_o3_max_val=mean(O3.1st.Max.Value,na.rm=TRUE), ave_o3_aqi=mean(O3.AQI,na.rm=TRUE), 
             ave_so2_mean=mean(SO2.Mean,na.rm=TRUE), ave_so2_max_val=mean(SO2.1st.Max.Value,na.rm=TRUE), ave_so2_aqi=mean(SO2.AQI,na.rm=TRUE),
-            ave_co_mean=mean(CO.Mean,na.rm=TRUE), ave_co_max_val=mean(CO.1st.Max.Value,na.rm=TRUE), ave_co_aqi=mean(CO.AQI,na.rm=TRUE)) 
+            ave_co_mean=mean(CO.Mean,na.rm=TRUE), ave_co_max_val=mean(CO.1st.Max.Value,na.rm=TRUE), ave_co_aqi=mean(CO.AQI,na.rm=TRUE), .groups = 'drop')
 
 states_maximum <- uspollution %>%
   group_by(year,State) %>%
   summarise(max_no2_mean=max(NO2.Mean,na.rm=TRUE), max_no2_max_val=max(NO2.1st.Max.Value,na.rm=TRUE), max_no2_aqi=max(NO2.AQI,na.rm=TRUE),
             max_o3_mean=max(O3.Mean,na.rm=TRUE), max_o3_max_val=max(O3.1st.Max.Value,na.rm=TRUE), max_o3_aqi=max(O3.AQI,na.rm=TRUE), 
             max_so2_mean=max(SO2.Mean,na.rm=TRUE), max_so2_max_val=max(SO2.1st.Max.Value,na.rm=TRUE), max_so2_aqi=max(SO2.AQI,na.rm=TRUE),
-            max_co_mean=max(CO.Mean,na.rm=TRUE), max_co_max_val=max(CO.1st.Max.Value,na.rm=TRUE), max_co_aqi=max(CO.AQI,na.rm=TRUE))
+            max_co_mean=max(CO.Mean,na.rm=TRUE), max_co_max_val=max(CO.1st.Max.Value,na.rm=TRUE), max_co_aqi=max(CO.AQI,na.rm=TRUE), .groups = 'drop')
 
 states_minimum <- uspollution %>%
   group_by(year,State) %>%
   summarise(min_no2_mean=min(NO2.Mean,na.rm=TRUE), min_no2_max_val=min(NO2.1st.Max.Value,na.rm=TRUE), min_no2_aqi=min(NO2.AQI,na.rm=TRUE),
             min_o3_mean=min(O3.Mean,na.rm=TRUE), min_o3_max_val=min(O3.1st.Max.Value,na.rm=TRUE), min_o3_aqi=min(O3.AQI,na.rm=TRUE), 
             min_so2_mean=min(SO2.Mean,na.rm=TRUE), min_so2_max_val=min(SO2.1st.Max.Value,na.rm=TRUE), min_so2_aqi=min(SO2.AQI,na.rm=TRUE),
-            min_co_mean=min(CO.Mean,na.rm=TRUE), min_co_max_val=min(CO.1st.Max.Value,na.rm=TRUE), min_co_aqi=min(CO.AQI,na.rm=TRUE))
-states <- left_join(states_ave, states_maximum)
-states <- left_join(states, states_minimum)
+            min_co_mean=min(CO.Mean,na.rm=TRUE), min_co_max_val=min(CO.1st.Max.Value,na.rm=TRUE), min_co_aqi=min(CO.AQI,na.rm=TRUE), .groups = 'drop')
+states <- left_join(states_ave, states_maximum, by = c("year", "State"))
+states <- left_join(states, states_minimum, by = c("year", "State"))
 
 View(states)
 
@@ -72,7 +72,7 @@ counties_ave <- uspollution %>%
   summarise(ave_no2_mean=mean(NO2.Mean,na.rm=TRUE), ave_no2_max_val=mean(NO2.1st.Max.Value,na.rm=TRUE), ave_no2_aqi=mean(NO2.AQI,na.rm=TRUE),
             ave_o3_mean=mean(O3.Mean,na.rm=TRUE), ave_o3_max_val=mean(O3.1st.Max.Value,na.rm=TRUE), ave_o3_aqi=mean(O3.AQI,na.rm=TRUE), 
             ave_so2_mean=mean(SO2.Mean,na.rm=TRUE), ave_so2_max_val=mean(SO2.1st.Max.Value,na.rm=TRUE), ave_so2_aqi=mean(SO2.AQI,na.rm=TRUE),
-            ave_co_mean=mean(CO.Mean,na.rm=TRUE), ave_co_max_val=mean(CO.1st.Max.Value,na.rm=TRUE), ave_co_aqi=mean(CO.AQI,na.rm=TRUE)) 
+            ave_co_mean=mean(CO.Mean,na.rm=TRUE), ave_co_max_val=mean(CO.1st.Max.Value,na.rm=TRUE), ave_co_aqi=mean(CO.AQI,na.rm=TRUE), .groups = 'drop')
 
 
 counties_maximum <- uspollution %>%
@@ -80,7 +80,7 @@ counties_maximum <- uspollution %>%
   summarise(max_no2_mean=max(NO2.Mean,na.rm=TRUE), max_no2_max_val=max(NO2.1st.Max.Value,na.rm=TRUE), max_no2_aqi=max(NO2.AQI,na.rm=TRUE),
             max_o3_mean=max(O3.Mean,na.rm=TRUE), max_o3_max_val=max(O3.1st.Max.Value,na.rm=TRUE), max_o3_aqi=max(O3.AQI,na.rm=TRUE), 
             max_so2_mean=max(SO2.Mean,na.rm=TRUE), max_so2_max_val=max(SO2.1st.Max.Value,na.rm=TRUE), max_so2_aqi=max(SO2.AQI,na.rm=TRUE),
-            max_co_mean=max(CO.Mean,na.rm=TRUE), max_co_max_val=max(CO.1st.Max.Value,na.rm=TRUE), max_co_aqi=max(CO.AQI,na.rm=TRUE))
+            max_co_mean=max(CO.Mean,na.rm=TRUE), max_co_max_val=max(CO.1st.Max.Value,na.rm=TRUE), max_co_aqi=max(CO.AQI,na.rm=TRUE), .groups = 'drop')
 
 
 counties_minimum <- uspollution %>%
@@ -88,10 +88,10 @@ counties_minimum <- uspollution %>%
   summarise(min_no2_mean=min(NO2.Mean,na.rm=TRUE), min_no2_max_val=min(NO2.1st.Max.Value,na.rm=TRUE), min_no2_aqi=min(NO2.AQI,na.rm=TRUE),
             min_o3_mean=min(O3.Mean,na.rm=TRUE), min_o3_max_val=min(O3.1st.Max.Value,na.rm=TRUE), min_o3_aqi=min(O3.AQI,na.rm=TRUE), 
             min_so2_mean=min(SO2.Mean,na.rm=TRUE), min_so2_max_val=min(SO2.1st.Max.Value,na.rm=TRUE), min_so2_aqi=min(SO2.AQI,na.rm=TRUE),
-            min_co_mean=min(CO.Mean,na.rm=TRUE), min_co_max_val=min(CO.1st.Max.Value,na.rm=TRUE), min_co_aqi=min(CO.AQI,na.rm=TRUE))
+            min_co_mean=min(CO.Mean,na.rm=TRUE), min_co_max_val=min(CO.1st.Max.Value,na.rm=TRUE), min_co_aqi=min(CO.AQI,na.rm=TRUE), .groups = 'drop')
 
-counties <- left_join(counties_ave, counties_maximum)
-counties <- left_join(counties, counties_minimum)
+counties <- left_join(counties_ave, counties_maximum, by = c("year", "State", "County"))
+counties <- left_join(counties, counties_minimum, by = c("year", "State", "County"))
 
 
 
@@ -111,7 +111,7 @@ cities_ave <- uspollution %>%
   summarise(ave_no2_mean=mean(NO2.Mean,na.rm=TRUE), ave_no2_max_val=mean(NO2.1st.Max.Value,na.rm=TRUE), ave_no2_aqi=mean(NO2.AQI,na.rm=TRUE),
             ave_o3_mean=mean(O3.Mean,na.rm=TRUE), ave_o3_max_val=mean(O3.1st.Max.Value,na.rm=TRUE), ave_o3_aqi=mean(O3.AQI,na.rm=TRUE), 
             ave_so2_mean=mean(SO2.Mean,na.rm=TRUE), ave_so2_max_val=mean(SO2.1st.Max.Value,na.rm=TRUE), ave_so2_aqi=mean(SO2.AQI,na.rm=TRUE),
-            ave_co_mean=mean(CO.Mean,na.rm=TRUE), ave_co_max_val=mean(CO.1st.Max.Value,na.rm=TRUE), ave_co_aqi=mean(CO.AQI,na.rm=TRUE)) 
+            ave_co_mean=mean(CO.Mean,na.rm=TRUE), ave_co_max_val=mean(CO.1st.Max.Value,na.rm=TRUE), ave_co_aqi=mean(CO.AQI,na.rm=TRUE), .groups = 'drop') 
 
 
 cities_maximum <- uspollution %>%
@@ -119,7 +119,7 @@ cities_maximum <- uspollution %>%
   summarise(max_no2_mean=max(NO2.Mean,na.rm=TRUE), max_no2_max_val=max(NO2.1st.Max.Value,na.rm=TRUE), max_no2_aqi=max(NO2.AQI,na.rm=TRUE),
             max_o3_mean=max(O3.Mean,na.rm=TRUE), max_o3_max_val=max(O3.1st.Max.Value,na.rm=TRUE), max_o3_aqi=max(O3.AQI,na.rm=TRUE), 
             max_so2_mean=max(SO2.Mean,na.rm=TRUE), max_so2_max_val=max(SO2.1st.Max.Value,na.rm=TRUE), max_so2_aqi=max(SO2.AQI,na.rm=TRUE),
-            max_co_mean=max(CO.Mean,na.rm=TRUE), max_co_max_val=max(CO.1st.Max.Value,na.rm=TRUE), max_co_aqi=max(CO.AQI,na.rm=TRUE))
+            max_co_mean=max(CO.Mean,na.rm=TRUE), max_co_max_val=max(CO.1st.Max.Value,na.rm=TRUE), max_co_aqi=max(CO.AQI,na.rm=TRUE), .groups = 'drop')
 
 
 cities_minimum <- uspollution %>%
@@ -127,10 +127,13 @@ cities_minimum <- uspollution %>%
   summarise(min_no2_mean=min(NO2.Mean,na.rm=TRUE), min_no2_max_val=min(NO2.1st.Max.Value,na.rm=TRUE), min_no2_aqi=min(NO2.AQI,na.rm=TRUE),
             min_o3_mean=min(O3.Mean,na.rm=TRUE), min_o3_max_val=min(O3.1st.Max.Value,na.rm=TRUE), min_o3_aqi=min(O3.AQI,na.rm=TRUE), 
             min_so2_mean=min(SO2.Mean,na.rm=TRUE), min_so2_max_val=min(SO2.1st.Max.Value,na.rm=TRUE), min_so2_aqi=min(SO2.AQI,na.rm=TRUE),
-            min_co_mean=min(CO.Mean,na.rm=TRUE), min_co_max_val=min(CO.1st.Max.Value,na.rm=TRUE), min_co_aqi=min(CO.AQI,na.rm=TRUE))
+            min_co_mean=min(CO.Mean,na.rm=TRUE), min_co_max_val=min(CO.1st.Max.Value,na.rm=TRUE), min_co_aqi=min(CO.AQI,na.rm=TRUE), .groups = 'drop')
 
-cities <- left_join(cities_ave, cities_maximum)
-cities <- left_join(cities, cities_minimum)
+cities <- left_join(cities_ave, cities_maximum, by = c("year", "City", "County"))
+cities <- left_join(cities, cities_minimum, by = c("year", "City", "County"))
+
+cities <- cities %>% 
+arrange(year)
 
 View(cities)
 
@@ -141,21 +144,25 @@ View(cities)
 aqi_max_no2 <- cities_maximum%>%
   group_by(County,year)%>%
   filter(max_no2_aqi==max(max_no2_aqi,na.rm = TRUE))%>%
+  ungroup() %>%
   select(max_no2_aqi,City)
 
 aqi_max_so2 <- cities_maximum%>%
   group_by(County,year)%>%
   filter(max_so2_aqi==max(max_so2_aqi,na.rm = TRUE))%>%
+  ungroup() %>%
   select(max_so2_aqi,City)
 
 aqi_max_o3 <- cities_maximum%>%
   group_by(County,year)%>%
   filter(max_o3_aqi==max(max_o3_aqi,na.rm = TRUE))%>%
+  ungroup() %>%
   select(max_o3_aqi,City)
 
 aqi_max_co <- cities_maximum%>%
   group_by(County,year)%>%
   filter(max_co_aqi==max(max_co_aqi,na.rm = TRUE))%>%
+  ungroup() %>%
   select(max_co_aqi,City)
 
 #4 dataframes: each contains a table of cities that have minimum average pollutant aqi of each county each year.
@@ -165,21 +172,25 @@ aqi_max_co <- cities_maximum%>%
 min_aqi_mean_no2 <- cities_ave%>%
   group_by(County,year)%>%
   filter(ave_no2_aqi==min(ave_no2_aqi,na.rm=TRUE))%>%
+  ungroup() %>%
   select(ave_no2_aqi,City)
 
 min_aqi_mean_so2 <- cities_ave%>%
   group_by(County,year)%>%
   filter(ave_so2_aqi==min(ave_so2_aqi,na.rm=TRUE))%>%
+  ungroup() %>%
   select(ave_so2_aqi,City)
 
 min_aqi_mean_03 <- cities_ave%>%
   group_by(County,year)%>%
   filter(ave_o3_aqi==min(ave_o3_aqi,na.rm=TRUE))%>%
+  ungroup() %>%
   select(ave_o3_aqi,City)
 
 min_aqi_mean_co <- cities_ave%>%
   group_by(County,year)%>%
   filter(ave_co_aqi==min(ave_co_aqi,na.rm=TRUE))%>%
+  ungroup() %>%
   select(ave_co_aqi,City)
 
 
@@ -191,8 +202,12 @@ min_aqi_mean_co <- cities_ave%>%
 
 ave_mean_year <- uspollution %>%
   group_by(year)%>%
-  summarise(ave_no2_mean=mean(NO2.Mean,na.rm=TRUE),ave_o3_mean=mean(O3.Mean,na.rm=TRUE),ave_so2_mean=mean(SO2.Mean,na.rm=TRUE),
-            ave_co_mean=mean(CO.Mean,na.rm=TRUE))
+  summarise(ave_no2_mean=round(mean(NO2.Mean,na.rm=TRUE), digits = 2),
+            ave_o3_mean=round(mean(O3.Mean,na.rm=TRUE), digits = 2),
+            ave_so2_mean=round(mean(SO2.Mean,na.rm=TRUE),digits = 2),
+            ave_co_mean=round(mean(CO.Mean,na.rm=TRUE),digits = 2),
+            .groups = 'drop')
+
 
 
 

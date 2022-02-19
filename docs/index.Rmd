@@ -1,6 +1,6 @@
 ---
 title: "US Air Pollution in Recent Years"
-author: "Kris Shen, Iris Mao, Rui Han Liu, Xiyah Chang"
+author: "Kris Shen, Iris Mao, Han Rui Liu, Xiyah Chang"
 date: "02/16/2022"
 output: html_document
 ---
@@ -8,46 +8,95 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+## Abstract
 
-## What is this file for?
+We are concerned with the air pollution trends in the U.S. during the time from Jan. 2010 to Dec. 2016, because the air quality is closely related to human activities and will significantly affect human health. To address this concern, we plan to use the dataset from data.world to come up with useful analysis and to visualize the possible trends of the U.S. air pollution situation. Therefore, we can use the results of the analysis to find existing air-pollution problems and to generate useful solutions.
 
-* This file will eventually become your project report for **P02: Exploratory Data Analysis**. Specifically, you will write rmarkdown to report your exploratory data analysis.
+## Keywords
 
-* Please see Canvas for more details.
+“environmental science; air pollution; major pollutants”
+
+## Affiliation
+
+INFO-201: Technical Foundations of Informatics - The Information School - University of Washington
+
+## Introduction 
+
+In recent years, we have seen a great increase in air pollution, which leads to a lot of environmental problems. We are really concerned about this problem and want to explore more about it. Therefore, we search the database related to this topic, from which we can see the level of air pollution in different states in the U.S. The elements that the database uses to represent the air pollution are four major pollutants which are NO2, O3, SO2, and CO. Units, Mean, AQI, 1st Max Value, and 1st Max Hour are five variable latitudes to show the level of air pollution. When analyzing the data, we need to figure out what the five variable latitudes stand for. In the result of the analysis, we hope to find the relationship between states and air pollution and the trend of air pollution over the years. We also want to analyze the possible elements (locations, human behavior, economic development…) behind it.
+
+## Design Situation 
+
+Framing the topic of concern: Our topic addresses the scientific issues related to the **Air Problems in the U.S**. There are many pollutants related to the Air Pollution Level, if the Air Pollution problem is not treated seriously, then it might cause a series of natural disasters. Human Values: Health awareness should be the big part connected to our topic of concern. The value seems to be originated from the truth that air is the substantial thing that human beings need to maintain their livings.Also, it will indirectly affect our health by negatively causing global warming and the sea level rising, which will increase the spread of diseases. This will hugely impact human health. 
+
+**Stakeholders**: The direct stakeholders of our topic are those who are really interested in air pollution topics, and who are concerned about the environment which will affect human activities and health. They should have the values of environmental protection and healthy lives for all humankind. The **indirect stakeholders** would be all human beings around the world since we are all relying on air to breathe and we all need fresh air to live a better and healthier life. Besides human beings, there are all other kinds of living in the world, such as plants, animals, and soil. They are also **counted as indirect stakeholders**. Benefits and harms: If interventions are taken with data and technology, air pollution might be controlled at a certain level which will neither limit human development(either on technologies or weapons), nor negatively impact the global environment on Earth. However, there could be the risk that before we, humans actually have the ability to control air pollution, the air pollution have already grown to the level that is irreversible. And the technology we are developing might accelerate the impacts of air pollution in a negative way.
 
 ## ACCESSING THE /source DIRECTORY
 ### Source Data and Load to View
-```{r, echo=TRUE}
+```{r, warning=FALSE}
 # Sourced the code to data_access.R file 
 # load the dataset with load_data()
-source("../source/data_access.R")
+source("../source/sum_info.R")
 ```
 
-### Dataset Information and Summary
-```{r summary_info, echo=TRUE}
-
+```{r, warning=FALSE}
+source("../source/sum_table.R")
 ```
 
-> This dataset has **`r summary_info$vars_size`** variables and **`r summary_info$obsv_size`** observations, collected data from **`r summary_info$min_year`** to **`r summary_info$max_year`**.  
-> There are four pollutants recorded, they are NO2(**`r summary_info$NO2_unit`**), O3 (**`r summary_info$O3_unit`**), SO2 (**`r summary_info$SO2_unit`**), and CO (**`r summary_info$CO_unit`**).  
-> **Column Names:** `r summary_info$col_names` 
+## Research Questions
 
-## ABOUT THIS FILE: 
+1. How much SO2 AQI is necessary to generate Acid Rain? 
+    a. If the highest AQI doesn't have enough SO2 to generate acid rain we don't have to worry about acid rain the possibilities of future acid rain in the US.
+    b. We look at the lowest level(s) of SO2 AQI inside the US because we want to find the safest areas without possibilities of acid rain in the future. 
+    c. We might look more into this question in the next part.
+    
+## Dataset Information and Summary
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+This dataset has **`r summary_info$vars_size`** variables and **`r summary_info$obsv_size`** observations, collected data from **`r summary_info$min_year`** to **`r summary_info$max_year`**.  
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+There are four pollutants recorded, they are NO2(**`r summary_info$NO2_unit`**), O3 (**`r summary_info$O3_unit`**), SO2 (**`r summary_info$SO2_unit`**), and CO (**`r summary_info$CO_unit`**).  
 
-```{r cars}
-summary(cars)
+**Column Names:** `r summary_info$col_names` 
+
+
+## Expected Implications
+
+We hope people will raise their awareness of air pollution and get to know more knowledge related to reducing air pollution, like using more public transportation. The school should help students to cultivate the environmental protection consciousness. The community can also get involved to educate residents of the importance of reducing air pollution. We also want the government to regulate the emissions of air pollutants and make rules of buying cars. There can also be a discount for taking public transportation. However, different states have different reasons that lead to air pollution, so governments of different states should apply professional technologists to find out the main reasons and figure out the most reasonable solutions. Besides, the car designers are encouraged to design more functions that can reduce the emission of air pollutants. 
+
+## Limitation
+
+The data in the database is only updated to 2016 so some of the data analyzed may not be useful in the current environment. In recent years, glaciers have retreated further due to global warming caused by worsening air quality. The composition of air becomes more complex and variable over time. Many factors can affect air quality. There are many sources that may not be checked due to missing data about air pollution. And because of the outbreak of the COVID-19 virus in 2019, the USA entered a very tense state, and it influenced so many people’s daily life. These external factors may become the limitations and affect the analysis of data.
+
+## Visualizations
+
+```{r, echo = FALSE}
+source("../source/1st_chart.R")
+ggplotly(first_chart)
 ```
 
-## Including Plots
+The first chart is visualizing the states with the highest pollution of SO2 pollutants using a bar chart. The state with the highest average SO2 AQI being **Ohio** at around 9.6 parts per billion and the lowest being **North Dakota** at around 0.1 parts per billion. 
 
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r, echo = FALSE}
+source("../source/2nd_chart.R")
+plot(second_chart)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+In the first chart we noticed that Ohio has the highest parts per billion. This chart focuses on Ohio plotting from 2010-2016 focusing on the pollution in Ohio's specific counties. We notice in 2011 it is at an all time high and by 2016 we can already see some changes. In **2011** we can see that there is **over 20 parts per billion for Cuyahoga and Hamilton** (We notice Medina disappears after 2010). In **2016** we visibly notice changes in the scatter plot showing a major decrease in amounts of average SO2 AQI in Cuyahoga and Hamilton to **the range of 0-10 parts per billion**. 
+
+```{r, echo = FALSE}
+source("../source/3rd_chart.R")
+plot(third_chart)
+```
+
+In the third chart, we used treemaps. By analyzing the first chart, we can easily find the state with the least SO2 pollution. For the measurement of the data, we must consider that not all counties are suitable for measurement. And not all counties will measure. Therefore, we took the relevant data for Wyoming (state) and wanted to find out which of its counties had the least air pollution. 
+
+We notice in **Laramie** the **average SO2 parts per billion increases** as the years go on **from 2010-2015** but suddenly around **2016** it **decreases**. By observation for both Sweetwater and Fremont we notice there are only 2 boxes. This could be due to various reasons such as lack of measurements, data gathering issues, etc.
+
+## References
+
+1. Nitrogen Dioxide & Sulfur Dioxide. (n.d.). Retrieved February 18, 2022, from https://scdhec.gov/sites/default/files/Library/CR-008071.pdf
+
+2. Sonwani, S., & Saxena , P. (2016, October). Identifying the Sources of Primary Air Pollutants and their Impact on Environmental Health: A Review . Retrieved February 4, 2022, from https://www.erpublication.org/published_paper/IJETR042555.pdf 
+
+3. U.S. air pollution data - dataset by data-society. data.world. (2016, December 4). Retrieved February 4, 2022, from             https://data.world/data-society/us-air-pollution-data/workspace/project-summary?agentid=data-society&datasetid=us-air-pollution-data 
+
+4. U.S. air pollution data - dataset by data-society. data.world. (2016, December 4). Retrieved February 4, 2022, from https://data.world/data-society/us-air-pollution-data/workspace/project-summary?agentid=data-society&datasetid=us-air-pollution-data

@@ -9,12 +9,12 @@
 #  -draw the chart about `counties` data frame to find the county of smallest AQI.
 #
 #----------------------------------------------------------------------------#
-setwd("~/final-project/final-project-starter-XiyahC/data")
+#setwd("C:/Users/mobtn/Documents/_code/final-project-starter-XiyahC/data")
 
 # # Install and load necessary packages
-install.packages("ggplot2")
+#install.packages("ggplot2")
 library(ggplot2)
-install.packages("treemapify")
+#install.packages("treemapify")
 library(treemapify)
 # Using the `ggplot()` function from the `ggplot2` package, work in `counties`data frame,
 # Store the result in a variable.
@@ -29,7 +29,7 @@ third_chart<-ggplot(smallest_situation, aes(area = ave_so2_aqi, fill = year, lab
                     size = 10)+ 
 scale_fill_brewer(palette = "Blues")+
   labs(title = "Average SO2 AQI in Wyoming(2010-2016)")
-plot(third_chart)
+#plot(third_chart)
 
 ##Purpose and Reason
 
