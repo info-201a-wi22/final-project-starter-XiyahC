@@ -205,20 +205,30 @@ source(&quot;../source/data_access.R&quot;)</code></pre>
 <pre><code>## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
-<pre class="r"><code>df &lt;- load_data()</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;year&#39;, &#39;State&#39;, &#39;NO2.Units&#39;, &#39;O3.Units&#39;,
+## &#39;SO2.Units&#39;. You can override using the `.groups` argument.`summarise()` has grouped
+## output by &#39;year&#39;. You can override using the `.groups` argument.`summarise()` has
+## grouped output by &#39;year&#39;. You can override using the `.groups` argument.Joining,
+## by = c(&quot;year&quot;, &quot;State&quot;)Joining, by = c(&quot;year&quot;, &quot;State&quot;)`summarise()` has grouped
+## output by &#39;year&#39;, &#39;State&#39;, &#39;County&#39;, &#39;NO2.Units&#39;, &#39;O3.Units&#39;, &#39;SO2.Units&#39;.
+## You can override using the `.groups` argument.`summarise()` has grouped output
+## by &#39;year&#39;, &#39;State&#39;. You can override using the `.groups` argument.`summarise()`
+## has grouped output by &#39;year&#39;, &#39;State&#39;. You can override using the `.groups`
+## argument.Joining, by = c(&quot;year&quot;, &quot;State&quot;, &quot;County&quot;)Joining, by = c(&quot;year&quot;,
+## &quot;State&quot;, &quot;County&quot;)`summarise()` has grouped output by &#39;year&#39;, &#39;City&#39;, &#39;County&#39;,
+## &#39;NO2.Units&#39;, &#39;O3.Units&#39;, &#39;SO2.Units&#39;. You can override using the `.groups`
+## argument.`summarise()` has grouped output by &#39;year&#39;, &#39;City&#39;. You can override
+## using the `.groups` argument.`summarise()` has grouped output by &#39;year&#39;, &#39;City&#39;.
+## You can override using the `.groups` argument.Joining, by = c(&quot;year&quot;, &quot;City&quot;,
+## &quot;County&quot;)Joining, by = c(&quot;year&quot;, &quot;City&quot;, &quot;County&quot;)Adding missing grouping
+## variables: `County`, `year`Adding missing grouping variables: `County`, `year`Adding
+## missing grouping variables: `County`, `year`Adding missing grouping variables:
+## `County`, `year`Adding missing grouping variables: `County`, `year`Adding missing
+## grouping variables: `County`, `year`Adding missing grouping variables: `County`,
+## `year`Adding missing grouping variables: `County`, `year`</code></pre>
 </div>
 <div id="dataset-information-and-summary" class="section level3">
 <h3>Dataset Information and Summary</h3>
-<pre class="r"><code>summary_info &lt;- list()
-summary_info$col_names &lt;- unique(colnames(df))
-summary_info$vars_size &lt;- ncol(df)
-summary_info$obsv_size &lt;- nrow(df)
-summary_info$max_year  &lt;- max(df$Date.Local, na.rm=TRUE)
-summary_info$min_year  &lt;- min(df$Date.Local, na.rm=TRUE)
-summary_info$NO2_unit  &lt;- unique(df$NO2.Units)
-summary_info$O3_unit   &lt;- unique(df$O3.Units)
-summary_info$SO2_unit  &lt;- unique(df$SO2.Units)
-summary_info$CO_unit   &lt;- unique(df$CO.Units)</code></pre>
 <blockquote>
 <p>This dataset has <strong>30</strong> variables and <strong>778254</strong> observations, collected data from <strong>2010-01-01</strong> to <strong>2016-05-31</strong>.<br />
 There are four pollutants recorded, they are NO2(<strong>Parts per billion</strong>), O3 (<strong>Parts per million</strong>), SO2 (<strong>Parts per billion</strong>), and CO (<strong>Parts per million</strong>).<br />

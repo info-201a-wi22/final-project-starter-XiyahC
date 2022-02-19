@@ -21,21 +21,11 @@ knitr::opts_chunk$set(echo = TRUE)
 # Sourced the code to data_access.R file 
 # load the dataset with load_data()
 source("../source/data_access.R")
-df <- load_data()
 ```
 
 ### Dataset Information and Summary
-```{r, echo=TRUE}
-summary_info <- list()
-summary_info$col_names <- unique(colnames(df))
-summary_info$vars_size <- ncol(df)
-summary_info$obsv_size <- nrow(df)
-summary_info$max_year  <- max(df$Date.Local, na.rm=TRUE)
-summary_info$min_year  <- min(df$Date.Local, na.rm=TRUE)
-summary_info$NO2_unit  <- unique(df$NO2.Units)
-summary_info$O3_unit   <- unique(df$O3.Units)
-summary_info$SO2_unit  <- unique(df$SO2.Units)
-summary_info$CO_unit   <- unique(df$CO.Units)
+```{r summary_info, echo=TRUE}
+
 ```
 
 > This dataset has **`r summary_info$vars_size`** variables and **`r summary_info$obsv_size`** observations, collected data from **`r summary_info$min_year`** to **`r summary_info$max_year`**.  
