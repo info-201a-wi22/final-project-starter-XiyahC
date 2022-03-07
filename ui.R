@@ -20,6 +20,45 @@ page_one <- tabPanel(
   tab_introduction_panel)
 
 #----------------------------------------------------------------------------#
+# First Chart
+#----------------------------------------------------------------------------#
+
+# Create a sidebar for first chart panel
+first_chart_sidebar <- sidebarPanel(
+  selectizeInput(
+    inputId = "select_state",
+    label = "Select a variable for coloring:",
+    choices = c("average SO2 mean", "average SO2 max", 
+                "average SO2 AQI(Air Quality Indicator)"),
+    selected= "average SO2 mean"
+  )
+)
+
+first_chart_main <- mainPanel(
+  h3("Average SO2 AQI in Different Selected States in US (2016)"),
+  plotOutput("first_chart_plot"),
+  br(),
+  p("This first chart is visualizing the states with the highest pollution of 
+    SO2 pollutants using a bar chart. The state with the highest average SO2 AQI 
+    being Ohio at around 9.6 parts per billion and the lowest being North Dakota 
+    at around 0.1 parts per billion."),
+  br(),
+  p("If playing around with the variables for coloring, we see that Ohio has the
+     highest average SO2 maximum value which is above 5 parts per billion. Due to
+     New Jersey Department of Health's ", strong("Hazardous Substance Fact Sheet"),
+    ", there is no hazard with SO2 level not exceeding 5 parts per million (= 5000 
+    parts per billion). Therefore, there is no need to be worried about the level 
+    of SO2 even you are in Ohio. However, it's still good to keep track on future SO2
+     levels to better prevent future increses.")
+)
+
+first_chart_panel <- tabPanel(
+  "First Chart",
+  first_chart_sidebar,
+  first_chart_main
+)
+
+#----------------------------------------------------------------------------#
 # Second Chart
 #----------------------------------------------------------------------------#
 
@@ -70,6 +109,7 @@ ui <- navbarPage(
   "US-Air-Pollution",
   theme = shinytheme("cyborg"),
   page_one,
+  first_chart_panel,
   second_chart_panel,
   includeCSS("style.css")
  )
