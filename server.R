@@ -40,9 +40,6 @@ my_server <- function(input, output, session){
         x = "Year",
         y = "Average SO2 AQI",
         title = "Average SO2 AQI in Ohio(2010-2016)")
-    
-    
-    
-})
+  })
     
 }
