@@ -78,7 +78,7 @@ tab_introduction_panel <- tabPanel(
       project with her friends in college to help other data-scientist to use 
       this pre-scrapped dataset to do further analysis. It is trustworthy since U.S. 
       EPA is an official government agency. We saw the dataset from Kaggle, then we 
-      go to the _data.world_ website to download the neat .csv file which contains 
+      go to the data.world website to download the neat .csv file which contains 
       all the data we need. Yes, we do credit the source of the data as one of our 
       references.")
 )

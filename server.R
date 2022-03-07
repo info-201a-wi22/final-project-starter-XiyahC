@@ -13,8 +13,10 @@ library("tidyverse")
 
 # Define server logic required to draw a histogram
 my_server <- function(input, output, session){
-  # Wrangle Data for chart_2 Input
   
+  #----------------------------------------------------------------------------#
+  # data input
+  #----------------------------------------------------------------------------#
   uspollution <- read.csv("data/uspollution_pollution_us_2010_2016.csv", stringsAsFactors = FALSE)
   uspollution <-  mutate(uspollution, year = c(str_sub(uspollution$Date.Local, 1, 4)))
   uspollution <- mutate(
@@ -22,6 +24,9 @@ my_server <- function(input, output, session){
     state_county = paste(County, State, sep = ",")
   )
   
+  #----------------------------------------------------------------------------#
+  # Wrangle Data for chart_2 Input
+  #----------------------------------------------------------------------------#
   counties_ave <- uspollution %>%
     group_by(year, State, County, SO2.Units) %>%
     summarise(ave_so2_aqi = mean(SO2.AQI, na.rm = TRUE))
