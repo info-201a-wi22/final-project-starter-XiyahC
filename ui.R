@@ -10,7 +10,9 @@ library("shinythemes")
 #----------------------------------------------------------------------------#
 # Import source
 #----------------------------------------------------------------------------#
+
 source("tab_panels/tab_introduction_panel.R")
+
 
 #----------------------------------------------------------------------------#
 # Define content for the first page
@@ -50,6 +52,7 @@ first_chart_main <- mainPanel(
     parts per billion). Therefore, there is no need to be worried about the level 
     of SO2 even you are in Ohio. However, it's still good to keep track on future SO2
      levels to better prevent future increses.")
+  
 )
 
 first_chart_panel <- tabPanel(
@@ -86,10 +89,11 @@ second_chart_panel <- tabPanel(
     tabPanel("Plot",
              second_chart_siderbar,
              second_chart_main
-             ),
+    ),
     tabPanel(
       "Summary",
       h1("Summary"),
+      br(),
       p("In the second chart we noticed that Ohio has the highest parts per billion. 
         This chart focuses on Ohio plotting from 2010-2016 focusing on the pollution 
         in Ohio's specific counties. We notice in 2011 it is at an all time high and 
@@ -97,10 +101,47 @@ second_chart_panel <- tabPanel(
         is over 20 parts per billion for Cuyahoga and Hamilton (We notice 
         Medina disappears after 2010). In 2016 we visibly notice changes in the 
         scatter plot showing a major decrease in amounts of average SO2 AQI in 
-        Cuyahoga and Hamilton to the range of 0-10 parts per billion. ")
+        Cuyahoga and Hamilton to the range of 0-10 parts per billion. "),
+      br(),
     )
   ),
 )
+
+
+
+
+
+#----------------------------------------------------------------------------#
+# Reference
+#----------------------------------------------------------------------------#
+
+reference_panel <- tabPanel(
+  "Reference",
+  h3("Reference"),
+  br(),
+  tags$ol(id = "list2",
+          tags$li("Nitrogen Dioxide & Sulfur Dioxide. (n.d.). Retrieved February 18, 2022, from 
+          https://scdhec.gov/sites/default/files/Library/CR-008071.pdf"), 
+          br(),
+          tags$li("U.S. air pollution data - dataset by data-society. data.world. 
+                  (2016, December 4). Retrieved February 4, 2022, from 
+                  https://data.world/data-society/us-air-pollution-data/workspace/project-summary?
+                  agentid=data-society&datasetid=us-air-pollution-data "),
+          br(),
+          tags$li("Sonwani, S., & Saxena , P. (2016, October). Identifying the 
+                  Sources of Primary Air Pollutants and their Impact on 
+                  Environmental Health: A Review . Retrieved February 4, 2022, 
+                  from https://www.erpublication.org/published_paper/IJETR042555.pdf "),
+          br(),
+          tags$li("U.S. air pollution data - dataset by data-society. data.world. 
+                  (2016, December 4). Retrieved February 4, 2022, from 
+                  https://data.world/data-society/us-air-pollution-data/workspace
+                  /project-summary?agentid=data-society&datasetid=us-air-pollution-data"),
+          br(),
+
+))
+
+
 
 #----------------------------------------------------------------------------#
 # Pass each page to a multi-page layout 
@@ -111,6 +152,7 @@ ui <- navbarPage(
   page_one,
   first_chart_panel,
   second_chart_panel,
+  reference_panel,
   includeCSS("style.css")
- )
+)
 

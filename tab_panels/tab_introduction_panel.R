@@ -61,8 +61,8 @@ tab_introduction_panel <- tabPanel(
   h3("Research Question"),
    p("How much SO2 AQI is necessary to generate Acid Rain?"),
     tags$ol(id = "list2",
-      tags$li("If the highest AQI doesn¡¯t have enough SO2 to generate acid rain 
-              we don¡¯t have to worry about acid rain the possibilities of future acid rain in the US."),
+      tags$li("If the highest AQI doesn't have enough SO2 to generate acid rain 
+              we don??t have to worry about acid rain the possibilities of future acid rain in the US."),
       tags$li("We look at the lowest level(s) of SO2 AQI inside the US because we want to find 
               the safest areas without possibilities of acid rain in the future.")
     ),
