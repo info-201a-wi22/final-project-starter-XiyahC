@@ -160,11 +160,10 @@ reference_panel <- tabPanel(
 table_panel <- tabPanel(
   "Table(P02)",
   h3("Table for Information at States Level"), 
-  em("Indicators of four pollutants(NO2, SO2, 03, CO) of different states in US."), 
+  em("Indicators of SO2 of different states in US."), 
   p(strong("Table added since in P02 we didn't have a table."),
-    "This dataframe named as 'states', which concludes the average, maximum, and minimum value of 
-    'pollutant Mean', 'pollutant 1st Max Value', and 'pollutant AQI' in different states in US. We want 
-    to have basic understanding of siutation of different pollutants in different states. "),
+    "This dataframe named as 'states', which concludes the average, maximum, and AQI value of 
+    SO2 in different states in US. We want to have basic understanding of siutation of SO2 in different states. "),
   br(),
   DT::dataTableOutput("table")
 )
