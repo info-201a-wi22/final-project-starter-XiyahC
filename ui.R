@@ -6,6 +6,7 @@ library("dplyr")
 library("plotly")
 library("ggplot2")
 library("shinythemes")
+library("DT")
 
 #----------------------------------------------------------------------------#
 # Import source
@@ -120,28 +121,53 @@ reference_panel <- tabPanel(
   h3("Reference"),
   br(),
   tags$ol(id = "list2",
-          tags$li("Nitrogen Dioxide & Sulfur Dioxide. (n.d.). Retrieved February 18, 2022, from 
-          https://scdhec.gov/sites/default/files/Library/CR-008071.pdf"), 
+          tags$li("Nitrogen Dioxide & Sulfur Dioxide. (n.d.). Retrieved February 18, 2022, from ",
+                  a(href="https://scdhec.gov/sites/default/files/Library/CR-008071.pdf",
+                    "https://scdhec.gov/sites/default/files/Library/CR-008071.pdf.")), 
           br(),
           tags$li("U.S. air pollution data - dataset by data-society. data.world. 
-                  (2016, December 4). Retrieved February 4, 2022, from 
-                  https://data.world/data-society/us-air-pollution-data/workspace/project-summary?
-                  agentid=data-society&datasetid=us-air-pollution-data "),
+                  (2016, December 4). Retrieved February 4, 2022, from ",
+                  a(href="https://data.world/data-society/us-air-pollution-data/workspace/
+                    project-summary?agentid=data-society&datasetid=us-air-pollution-data",
+                    "https://data.world/data-society/us-air-pollution-data/workspace/
+                    project-summary?agentid=data-society&datasetid=us-air-pollution-data.")),
           br(),
           tags$li("Sonwani, S., & Saxena , P. (2016, October). Identifying the 
                   Sources of Primary Air Pollutants and their Impact on 
-                  Environmental Health: A Review . Retrieved February 4, 2022, 
-                  from https://www.erpublication.org/published_paper/IJETR042555.pdf "),
+                  Environmental Health: A Review . Retrieved February 4, 2022, from ",
+                  a(href="https://www.erpublication.org/published_paper/IJETR042555.pdf",
+                    "https://www.erpublication.org/published_paper/IJETR042555.pdf.")),
           br(),
           tags$li("U.S. air pollution data - dataset by data-society. data.world. 
-                  (2016, December 4). Retrieved February 4, 2022, from 
-                  https://data.world/data-society/us-air-pollution-data/workspace
-                  /project-summary?agentid=data-society&datasetid=us-air-pollution-data"),
+                  (2016, December 4). Retrieved February 4, 2022, from ", 
+                  a(href=" https://data.world/data-society/us-air-pollution-data/workspace/
+                    project-summary?agentid=data-society&datasetid=us-air-pollution-data",
+                    " https://data.world/data-society/us-air-pollution-data/workspace/project-summary
+                    ?agentid=data-society&datasetid=us-air-pollution-data.")),
           br(),
+          tags$li("New Jersey Department of Health. (2000, June). Right to know hazardous 
+                  substance fact sheet. nj.gov. Retrieved March 7, 2022, from ", 
+                  a(href="https://nj.gov/health/eoh/rtkweb/documents/fs/1759.pdf",
+                    "https://nj.gov/health/eoh/rtkweb/documents/fs/1759.pdf.")),
+          br()
 
 ))
 
+#----------------------------------------------------------------------------#
+# Table(P02)
+#----------------------------------------------------------------------------#
 
+table_panel <- tabPanel(
+  "Table(P02)",
+  h3("Table for Information at States Level"), 
+  em("Indicators of four pollutants(NO2, SO2, 03, CO) of different states in US."), 
+  p(strong("Table added since in P02 we didn't have a table."),
+    "This dataframe named as 'states', which concludes the average, maximum, and minimum value of 
+    'pollutant Mean', 'pollutant 1st Max Value', and 'pollutant AQI' in different states in US. We want 
+    to have basic understanding of siutation of different pollutants in different states. "),
+  br(),
+  DT::dataTableOutput("table")
+)
 
 #----------------------------------------------------------------------------#
 # Pass each page to a multi-page layout 
@@ -153,6 +179,7 @@ ui <- navbarPage(
   first_chart_panel,
   second_chart_panel,
   reference_panel,
+  table_panel,
   includeCSS("style.css")
 )
 

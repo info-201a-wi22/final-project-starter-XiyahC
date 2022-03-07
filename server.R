@@ -11,6 +11,7 @@ library(shiny)
 library("ggplot2")
 library("tidyverse")
 library("plotly")
+library("DT")
 
 # Define server logic required to draw a histogram
 my_server <- function(input, output, session){
@@ -122,5 +123,19 @@ my_server <- function(input, output, session){
         y = "Average SO2 AQI",
         title = "Average SO2 AQI in Ohio(2010-2016)")
   })
+  
+  #----------------------------------------------------------------------------#
+  # Wrangle Data for Table
+  #----------------------------------------------------------------------------#
+  output$table <- DT::renderDataTable({
     
+    df <- states %>% select(year, State, SO2.Units, ave_so2_mean, ave_so2_max_val, ave_so2_aqi)
+
+    return(datatable(df, rownames = FALSE) 
+           %>% formatStyle( c("year","State","SO2.Units","ave_so2_mean","ave_so2_max_val","ave_so2_aqi"),
+                                         backgroundColor = 'gray', color='white')) 
+  })
+  
+  
+  
 }
