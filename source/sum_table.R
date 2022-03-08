@@ -93,7 +93,7 @@ counties_minimum <- uspollution %>%
 counties <- left_join(counties_ave, counties_maximum, by = c("year", "State", "County"))
 counties <- left_join(counties, counties_minimum, by = c("year", "State", "County"))
 
-
+View(counties)
 
 # dataframe3: Indicators of four pollutants of different cities in each county.
 

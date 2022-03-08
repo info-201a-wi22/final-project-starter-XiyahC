@@ -12,28 +12,23 @@
 #setwd("C:/Users/mobtn/Documents/_code/final-project-starter-XiyahC/data")
 
 # # Install and load necessary packages
-#install.packages("ggplot2")
-library(ggplot2)
-#install.packages("treemapify")
-library(treemapify)
-# Using the `ggplot()` function from the `ggplot2` package, work in `counties`data frame,
+#install.packages("plotly")
+library("plotly")
+# Using the `plot_ly()` function from the `ggplot2` package, work in `counties`data frame,
 # Store the result in a variable.
-A<-counties%>%
+smallest_situation<-counties%>%
   filter(State=="Wyoming")
-smallest_situation<-data.frame(A)
-
-third_chart<-ggplot(smallest_situation, aes(area = ave_so2_aqi, fill = year, label = County)) +
-  geom_treemap() +
-  geom_treemap_text(colour = "black",
-                    place = "centre",
-                    size = 10)+ 
-scale_fill_brewer(palette = "Blues")+
-  labs(title = "Average SO2 AQI in Wyoming(2010-2016)")
-#plot(third_chart)
+third_chart <- plot_ly(smallest_situation, 
+                       x = ~year, 
+                       y = ~ave_so2_aqi, 
+                       color = ~County) 
+third_chart <- third_chart %>% add_lines()
+third_chart <-third_chart %>% layout(title = 'Average SO2 AQI in Wyoming(2010-2016)')
+#ggplotly(third_chart)
 
 ##Purpose and Reason
 
-#In the third chart, I used treemaps. By analyzing the first chart, we can easily 
+#In the third chart, I used the line chart. By analyzing the first chart, we can easily 
 #find the state with the least SO2 pollution. For the measurement of the data, we 
 #must consider that not all counties are suitable for measurement. And not all counties
 #will measure. Therefore, we took the relevant data for Wyoming (state) and wanted to 

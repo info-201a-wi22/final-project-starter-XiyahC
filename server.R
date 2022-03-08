@@ -12,9 +12,11 @@ library("ggplot2")
 library("tidyverse")
 library("plotly")
 library("DT")
+library("dplyr")
+library(stringr)
 
 # Define server logic required to draw a histogram
-my_server <- function(input, output, session){
+server <- function(input, output, session){
   
   #----------------------------------------------------------------------------#
   # data input
@@ -124,6 +126,51 @@ my_server <- function(input, output, session){
         title = "Average SO2 AQI in Ohio(2010-2016)")
   })
   
+  #----------------------------------------------------------------------------#
+  # Wrangle Data for chart_3 Input
+  #----------------------------------------------------------------------------#
+  # Make Data Frame
+  counties_ave <- uspollution %>%
+    group_by(year,State,County, NO2.Units,O3.Units,SO2.Units,CO.Units) %>%
+    summarise(ave_no2_mean=mean(NO2.Mean,na.rm=TRUE), ave_no2_max_val=mean(NO2.1st.Max.Value,na.rm=TRUE), ave_no2_aqi=mean(NO2.AQI,na.rm=TRUE),
+              ave_o3_mean=mean(O3.Mean,na.rm=TRUE), ave_o3_max_val=mean(O3.1st.Max.Value,na.rm=TRUE), ave_o3_aqi=mean(O3.AQI,na.rm=TRUE), 
+              ave_so2_mean=mean(SO2.Mean,na.rm=TRUE), ave_so2_max_val=mean(SO2.1st.Max.Value,na.rm=TRUE), ave_so2_aqi=mean(SO2.AQI,na.rm=TRUE),
+              ave_co_mean=mean(CO.Mean,na.rm=TRUE), ave_co_max_val=mean(CO.1st.Max.Value,na.rm=TRUE), ave_co_aqi=mean(CO.AQI,na.rm=TRUE), .groups = 'drop')
+  
+  
+  counties_maximum <- uspollution %>%
+    group_by(year,State,County) %>%
+    summarise(max_no2_mean=max(NO2.Mean,na.rm=TRUE), max_no2_max_val=max(NO2.1st.Max.Value,na.rm=TRUE), max_no2_aqi=max(NO2.AQI,na.rm=TRUE),
+              max_o3_mean=max(O3.Mean,na.rm=TRUE), max_o3_max_val=max(O3.1st.Max.Value,na.rm=TRUE), max_o3_aqi=max(O3.AQI,na.rm=TRUE), 
+              max_so2_mean=max(SO2.Mean,na.rm=TRUE), max_so2_max_val=max(SO2.1st.Max.Value,na.rm=TRUE), max_so2_aqi=max(SO2.AQI,na.rm=TRUE),
+              max_co_mean=max(CO.Mean,na.rm=TRUE), max_co_max_val=max(CO.1st.Max.Value,na.rm=TRUE), max_co_aqi=max(CO.AQI,na.rm=TRUE), .groups = 'drop')
+  
+  
+  counties_minimum <- uspollution %>%
+    group_by(year,State,County) %>%
+    summarise(min_no2_mean=min(NO2.Mean,na.rm=TRUE), min_no2_max_val=min(NO2.1st.Max.Value,na.rm=TRUE), min_no2_aqi=min(NO2.AQI,na.rm=TRUE),
+              min_o3_mean=min(O3.Mean,na.rm=TRUE), min_o3_max_val=min(O3.1st.Max.Value,na.rm=TRUE), min_o3_aqi=min(O3.AQI,na.rm=TRUE), 
+              min_so2_mean=min(SO2.Mean,na.rm=TRUE), min_so2_max_val=min(SO2.1st.Max.Value,na.rm=TRUE), min_so2_aqi=min(SO2.AQI,na.rm=TRUE),
+              min_co_mean=min(CO.Mean,na.rm=TRUE), min_co_max_val=min(CO.1st.Max.Value,na.rm=TRUE), min_co_aqi=min(CO.AQI,na.rm=TRUE), .groups = 'drop')
+  
+  counties <- left_join(counties_ave, counties_maximum, by = c("year", "State", "County"))
+  counties <- left_join(counties, counties_minimum, by = c("year", "State", "County"))
+  
+  smallest_situation<-counties%>%
+    filter(State=="Wyoming")
+  # Server Function
+    output$line <- renderPlotly({
+      p<- plot_ly(smallest_situation, 
+                  x = ~year, 
+                  y = ~get(input$search), 
+                  color = ~County,
+                  type = "scatter",
+                  mode = "lines")%>%
+        layout(xaxis = list(title = "Year"),
+               yaxis = list(title = "Value"),
+               title="Different SO2 Values in Wyoming")
+        p
+    })
   #----------------------------------------------------------------------------#
   # Wrangle Data for Table
   #----------------------------------------------------------------------------#

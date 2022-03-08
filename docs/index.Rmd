@@ -80,17 +80,15 @@ source("../source/2nd_chart.R")
 plot(second_chart)
 ```
 
-In the first chart we noticed that Ohio has the highest parts per billion. This chart focuses on Ohio plotting from 2010-2016 focusing on the pollution in Ohio's specific counties. We notice in 2011 it is at an all time high and by 2016 we can already see some changes. In **2011** we can see that there is **over 20 parts per billion for Cuyahoga and Hamilton** (We notice Medina disappears after 2010). In **2016** we visibly notice changes in the scatter plot showing a major decrease in amounts of average SO2 AQI in Cuyahoga and Hamilton to **the range of 0-10 parts per billion**. 
+In the Second chart we noticed that Ohio has the highest parts per billion. This chart focuses on Ohio plotting from 2010-2016 focusing on the pollution in Ohio's specific counties. We notice in 2011 it is at an all time high and by 2016 we can already see some changes. In **2011** we can see that there is **over 20 parts per billion for Cuyahoga and Hamilton** (We notice Medina disappears after 2010). In **2016** we visibly notice changes in the scatter plot showing a major decrease in amounts of average SO2 AQI in Cuyahoga and Hamilton to **the range of 0-10 parts per billion**. 
 
 ```{r, echo = FALSE}
 source("../source/3rd_chart.R")
 plot(third_chart)
 ```
 
-In the third chart, we used treemaps. By analyzing the first chart, we can easily find the state with the least SO2 pollution. For the measurement of the data, we must consider that not all counties are suitable for measurement. And not all counties will measure. Therefore, we took the relevant data for Wyoming (state) and wanted to find out which of its counties had the least air pollution. 
-
-We notice in **Laramie** the **average SO2 parts per billion increases** as the years go on **from 2010-2015** but suddenly around **2016** it **decreases**. By observation for both Sweetwater and Fremont we notice there are only 2 boxes. This could be due to various reasons such as lack of measurements, data gathering issues, etc.
-
+In the third chart, we used the line chart. By analyzing the first chart, we can easily find the state with the least SO2 pollution. For the measurement of the data, we must consider that not all counties are suitable for measurement. And not all counties will measure. Therefore, we took the relevant data for Wyoming (state) and wanted to find out which of its counties had the least air pollution. 
+We noticed that in **Laramie**, from **2011 to 2014**, the growth trend of average SO2 parts per billion leveled off but started to **increase suddenly** and sharply from 2014. After the data peaked in **2015**, it began to show a significant **downward trend**. Looking at Sweetwater and Fremont, we notice only two little lines. This can be due to various reasons such as lack of measurement, data collection issues, etc.
 ## References
 
 1. Nitrogen Dioxide & Sulfur Dioxide. (n.d.). Retrieved February 18, 2022, from https://scdhec.gov/sites/default/files/Library/CR-008071.pdf

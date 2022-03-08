@@ -108,8 +108,88 @@ second_chart_panel <- tabPanel(
   ),
 )
 
+#----------------------------------------------------------------------------#
+# Third Chart
+#----------------------------------------------------------------------------#
+# Part One
+third_chart_sidebar <- sidebarPanel(
+  selectInput(
+    "search",
+    label = "Select a Variable for Exploring:",
+    choices = c("Average SO2 Mean"="ave_so2_mean", "Average SO2 Max Value"="ave_so2_max_val", 
+                "Average SO2 AQI"="ave_so2_aqi"),
+    selected= "Average SO2 Mean")
+)
+#Part Two
+
+third_chart_main <- mainPanel(
+  h3("Average SO2 AQI in Wyoming(2010-2016)"),
+  plotlyOutput("line"),
+  br(),
+  p("In the third chart, we used the line chart. By analyzing the first chart, 
+    we can easily find the state with the least SO2 pollution. For the measurement 
+    of the data, we must consider that not all counties are suitable for measurement.
+    And not all counties will measure. At the same time, people can choose various 
+    types of values to explore on this page. This ensures that the analysis of SO2 
+    air pollution is more specific.Therefore, we took the relevant data for 
+    Wyoming (state) and wanted to find out which of its counties had the least 
+    air pollution."),
+  br(),
+  p("We noticed that in", strong("Laramie,"), "from", strong("2011 to 2014"), ", 
+  the growth trend of average SO2 parts per billion", em("leveled off"), "but 
+  started to", em("increase suddenly"), "and sharply from", strong("2014"), ". After
+  the data peaked in", strong("2015"), ", it began to show a significant", 
+  strong("downward trend"), ". Looking at Sweetwater and Fremont, we notice only 
+  two little lines. This can be due to various reasons such as lack of measurement, data 
+  collection issues, etc.")
+  )
+
+third_chart_panel <- tabPanel(
+  "Third Chart",
+  third_chart_sidebar,
+  third_chart_main
+)
 
 
+# Define content for the summary page
+summary_panel <- tabPanel(
+  "Summary",
+  h3("Summary of US Air Pollution"),
+  p("Air pollution is the most considerable environmental risk to public health 
+    worldwide. People worldwide are exposed to air pollution, whether at work, 
+    during travel, or home. It is an invisible killer lurking around us. It will
+    not only seriously affect human health but also damage the ecosystem. We chose 
+    to primarily explore the impact of the air pollutant SO2 in different states 
+    and counties in the United States and trends in air pollution over the years. 
+    SO2 has the greatest impact on the environment among the four major pollutants.
+    SO2 has a stimulating effect on human respiratory organs and eye membranes, 
+    and long-term inhalation is harmful to the respiratory system, liver, kidney, 
+    and heart. At the same time, it plays a significant role in forming acid rain,
+    which seriously damages the environment."),
+  br(),
+  p("We can easily find that Ohio is the state with the highest SO2 pollution through 
+    data analysis. The highest AQI value can reach", strong("161"), ", which belongs 
+    to moderate pollution. However, North Dakota, as the least polluted state, has an AQI value
+    of", strong("only one"), "and has no air pollution. This shows that North Dakota State is the 
+    safest area without the possibility of acid rain in the future. Ohio is very 
+    likely to be affected by acid rain, and the local government should pay attention
+    to this and plan emergency measures on time."),
+  br(),
+  p("Further analysis of Ohio's counties shows that in 2011 it was at an all-time
+    high. In 2016, the average SO2 AQI of Cuyahoga and Hamilton dropped significantly 
+    to the range of", strong("0-10"), "parts per billion. This is what everyone expects to see. 
+    Due to the lack of North Dakota data, we chose to analyze the SO2 specific values
+    of counties in Wyoming (the second least SO2 polluted state in the United States).
+    Laramie's average SO2 AQI is in a very safe range all year round, between", strong("0 and 3"), ". 
+    Therefore, it is not subject to any risk of acid rain formation, and the environment 
+    is not affected."),
+  br(),
+  p("At last, with the development of society, if pollutants are not effectively 
+    controlled, they will only cause more and more severe damage to human health 
+    and the environment. Human beings need to pay attention to this and jointly 
+    protect this beautiful homeland - the Earth."),
+  a(href = "https://youtu.be/GVBeY1jSG9Y", "How air pollution impacts your body")
+)
 
 
 #----------------------------------------------------------------------------#
@@ -177,8 +257,9 @@ ui <- navbarPage(
   page_one,
   first_chart_panel,
   second_chart_panel,
+  third_chart_panel,
+  summary_panel,
   reference_panel,
   table_panel,
   includeCSS("style.css")
 )
-
