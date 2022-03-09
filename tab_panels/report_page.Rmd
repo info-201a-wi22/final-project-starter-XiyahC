@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 t <- 10 * 4 * 4
 ```
 ```{r , include=FALSE}
-source("~/final-project-starter-XiyahC/source/sum_info.R")
+source("final-project-starter-XiyahC/source/sum_info.R")
 library("knitr")
 ```
 
