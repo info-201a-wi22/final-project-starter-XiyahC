@@ -13,6 +13,7 @@ library("DT")
 #----------------------------------------------------------------------------#
 
 source("tab_panels/tab_introduction_panel.R")
+source("tab_panels/tab_report_panel.R")
 
 
 #----------------------------------------------------------------------------#
@@ -40,26 +41,37 @@ first_chart_sidebar <- sidebarPanel(
 first_chart_main <- mainPanel(
   h3("Average SO2 AQI in Different Selected States in US (2016)"),
   plotOutput("first_chart_plot"),
-  br(),
-  p("This first chart is visualizing the states with the highest pollution of 
-    SO2 pollutants using a bar chart. The state with the highest average SO2 AQI 
-    being Ohio at around 9.6 parts per billion and the lowest being North Dakota 
-    at around 0.1 parts per billion."),
-  br(),
-  p("If playing around with the variables for coloring, we see that Ohio has the
-     highest average SO2 maximum value which is above 5 parts per billion. Due to
-     New Jersey Department of Health's ", strong("Hazardous Substance Fact Sheet"),
-    ", there is no hazard with SO2 level not exceeding 5 parts per million (= 5000 
-    parts per billion). Therefore, there is no need to be worried about the level 
-    of SO2 even you are in Ohio. However, it's still good to keep track on future SO2
-     levels to better prevent future increses.")
+  
   
 )
 
 first_chart_panel <- tabPanel(
   "First Chart",
-  first_chart_sidebar,
-  first_chart_main
+  tabsetPanel(
+    type = "tabs",
+    tabPanel(
+      "Plot",
+      first_chart_sidebar,
+      first_chart_main
+    ),
+    tabPanel(
+      "Summary",
+      h1("Summary"),
+      br(),
+      p("This first chart is visualizing the states with the highest pollution of 
+    SO2 pollutants using a bar chart. The state with the highest average SO2 AQI 
+    being Ohio at around 9.6 parts per billion and the lowest being North Dakota 
+    at around 0.1 parts per billion."),
+      br(),
+      p("If playing around with the variables for coloring, we see that Ohio has the
+     highest average SO2 maximum value which is above 5 parts per billion. Due to
+     New Jersey Department of Health's ", strong("Hazardous Substance Fact Sheet"),
+        ", there is no hazard with SO2 level not exceeding 5 parts per million (= 5000 
+    parts per billion). Therefore, there is no need to be worried about the level 
+    of SO2 even you are in Ohio. However, it's still good to keep track on future SO2
+     levels to better prevent future increses.")
+      
+    ))
 )
 
 #----------------------------------------------------------------------------#
@@ -125,8 +137,21 @@ third_chart_sidebar <- sidebarPanel(
 third_chart_main <- mainPanel(
   h3("Average SO2 AQI in Wyoming(2010-2016)"),
   plotlyOutput("line"),
-  br(),
-  p("In the third chart, we used the line chart. By analyzing the first chart, 
+  )
+
+third_chart_panel <- tabPanel(
+  "Third Chart",
+  tabsetPanel(
+    type = "tabs",
+    tabPanel(
+      "Plot",
+      third_chart_sidebar,
+      third_chart_main
+    ),
+    tabPanel(
+      "Summary",
+      h1("Summary"),
+      p("In the third chart, we used the line chart. By analyzing the first chart, 
     we can easily find the state with the least SO2 pollution. For the measurement 
     of the data, we must consider that not all counties are suitable for measurement.
     And not all counties will measure. At the same time, people can choose various 
@@ -134,27 +159,23 @@ third_chart_main <- mainPanel(
     air pollution is more specific.Therefore, we took the relevant data for 
     Wyoming (state) and wanted to find out which of its counties had the least 
     air pollution."),
-  br(),
-  p("We noticed that in", strong("Laramie,"), "from", strong("2011 to 2014"), ", 
+      br(),
+      p("We noticed that in", strong("Laramie,"), "from", strong("2011 to 2014"), ", 
   the growth trend of average SO2 parts per billion", em("leveled off"), "but 
   started to", em("increase suddenly"), "and sharply from", strong("2014"), ". After
   the data peaked in", strong("2015"), ", it began to show a significant", 
-  strong("downward trend"), ". Looking at Sweetwater and Fremont, we notice only 
+        strong("downward trend"), ". Looking at Sweetwater and Fremont, we notice only 
   two little lines. This can be due to various reasons such as lack of measurement, data 
   collection issues, etc.")
-  )
-
-third_chart_panel <- tabPanel(
-  "Third Chart",
-  third_chart_sidebar,
-  third_chart_main
-)
+    )))
+ 
 
 
 # Define content for the summary page
 summary_panel <- tabPanel(
   "Summary",
   h3("Summary of US Air Pollution"),
+  br(),
   p("Air pollution is the most considerable environmental risk to public health 
     worldwide. People worldwide are exposed to air pollution, whether at work, 
     during travel, or home. It is an invisible killer lurking around us. It will
@@ -252,6 +273,8 @@ table_panel <- tabPanel(
 # Report Page
 #----------------------------------------------------------------------------#
 
+tab_report_panel
+
 
 #----------------------------------------------------------------------------#
 # Pass each page to a multi-page layout 
@@ -265,6 +288,7 @@ ui <- navbarPage(
   third_chart_panel,
   summary_panel,
   reference_panel,
+  tab_report_panel,
   table_panel,
   includeCSS("style.css")
 )

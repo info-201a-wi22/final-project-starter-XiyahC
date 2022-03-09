@@ -3,8 +3,8 @@ library("dplyr", warn.conflicts = FALSE)
 library("tidyverse")
 
 # Load Data
-setwd("C:/Users/mobtn/Documents/_code/final-project-starter-XiyahC/data")
-data <- "uspollution_pollution_us_2010_2016.csv"
+
+data <- "~/final-project-starter-XiyahC/data/uspollution_pollution_us_2010_2016.csv"
 uspollution <- read.csv(data, header=TRUE, stringsAsFactors=FALSE)
 View(uspollution)
 
