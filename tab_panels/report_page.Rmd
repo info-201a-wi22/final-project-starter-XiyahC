@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 t <- 10 * 4 * 4
 ```
 ```{r , include=FALSE}
-source("final-project-starter-XiyahC/source/sum_info.R")
+
 library("knitr")
 ```
 
@@ -47,11 +47,11 @@ Framing the topic of concern: Our topic addresses the scientific issues related 
     
 ## Dataset Information and Summary
 
-This dataset has **`r summary_info$vars_size`** variables and **`r summary_info$obsv_size`** observations, collected data from **`r summary_info$min_year`** to **`r summary_info$max_year`**.  
+This dataset has **30** variables and **778254** observations, collected data from **2010-01-01** to **2016-05-31**.  
 
-There are four pollutants recorded, they are NO2(**`r summary_info$NO2_unit`**), O3 (**`r summary_info$O3_unit`**), SO2 (**`r summary_info$SO2_unit`**), and CO (**`r summary_info$CO_unit`**).  
+There are four pollutants recorded, they are NO2(**Parts per billion**), O3 (**Parts per million**), SO2 (**Parts per billion**), and CO (**Parts per million`**).  
 
-**Column Names:** `r summary_info$col_names` 
+**Column Names:** X, Unnamed..0, State.Code, County.Code, Site.Num, Address, State, County, City, Date.Local, NO2.Units, NO2.Mean, NO2.1st.Max.Value, NO2.1st.Max.Hour, NO2.AQI, O3.Units, O3.Mean, O3.1st.Max.Value, O3.1st.Max.Hour, O3.AQI, SO2.Units, SO2.Mean, SO2.1st.Max.Value, SO2.1st.Max.Hour, SO2.AQI, CO.Units, CO.Mean, CO.1st.Max.Value, CO.1st.Max.Hour, CO.AQI
 
 
 ## Expected Implications

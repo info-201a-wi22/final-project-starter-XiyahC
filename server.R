@@ -189,7 +189,7 @@ server <- function(input, output, session) {
   # Outputting a R Markdown document
   #----------------------------------------------------------------------------#
   output$report <- renderUI({
-    HTML(markdown::markdownToHTML(knit("tab_panels/report_page.rmd", quiet = TRUE)))
+    HTML(markdown::markdownToHTML(knit("tab_panels/report_page.Rmd", quiet = TRUE)))
   })
 
 }
